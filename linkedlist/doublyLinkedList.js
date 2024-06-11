@@ -61,7 +61,63 @@ DoublyLinkedList.prototype.insertAfterGivenNode = function (prevNode, data) {
     prevNode.next = newNode;
 
     //tail
-    if (newNode5.next === null) {
+    if (newNode.next === null) {
         this.tail = newNode;
+    }
+}
+
+//deleting the first node at LL
+DoublyLinkedList.prototype.deleteAtFirst = function () {
+    if (!this.head) {
+        console.log("Doubly linked list is not present");
+        return;
+    }
+
+    if (this.head === this.tail) {
+        this.head = null
+        this.tail = null;
+    } else {
+        this.head = this.head.next;
+        this.head.prev = null;
+    }
+}
+
+//deleting the last node in LL
+DoublyLinkedList.prototype.deleteAtLast = function () {
+    if (!this.tail) {
+        return "LL is not present"
+    }
+
+    if (this.head === this.tail) {
+        this.head = null;
+        this.tail = null;
+    } else {
+        this.tail = this.tail.prev;
+        this.tail.next = null;
+    }
+}
+
+//reversing the Doubly Linked List
+DoublyLinkedList.prototype.reverse = function () {
+    if (!this.head) {
+        return "LL did not present";
+    }
+
+    let temp = null;
+    let current = this.head;
+    while (current) {
+        //swapping
+        temp = current.prev
+        current.prev = current.next;
+        current.next = temp
+
+        //move the current
+        current = current.prev
+    }
+
+    if (this.tail !== null) {
+        //swapping tail
+        this.tail = this.head;
+        this.head = temp.prev;
     }
 }
