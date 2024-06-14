@@ -68,6 +68,35 @@ class BinarySearchTree {
         }
         return node;
     }
+
+
+
+    //helper funtion for in order traversal
+    inOrder(node, result) {
+        if (node !== null) {
+            this.inOrder(node.left, result);
+            result.push(node.key);
+            this.inOrder(node.right, result);
+        }
+    }
+
+    //helper funtion for pre order trversal
+    preOrder(node, result) {
+        if (node !== null) {
+            result.push(node.key);
+            this.preOrder(node.left, result);
+            this.preOrder(node.right, result);
+        }
+    }
+
+    //helper funtion for post order traversal
+    postOrder(node, result) {
+        if (node !== null) {
+            this.postOrder(node.left, result);
+            this.postOrder(node.right, result);
+            result.push(node.key);
+        }
+    }
 }
 
 
@@ -88,4 +117,25 @@ BinarySearchTree.prototype.insert = function (key) {
 //delete in BST
 BinarySearchTree.prototype.delete = function (key) {
     this.root = this.deleteNode(this.root, key);
+}
+
+//In order traversal
+BinarySearchTree.prototype.inOrderTraversal = function () {
+    const result = [];
+    this.inOrder(this.root, result);
+    return result;
+}
+
+//post order traversal
+BinarySearchTree.prototype.preOrderTravsersal = function () {
+    const result = [];
+    this.preOrder(this.root, result);
+    return result;
+}
+
+// post order traversal
+BinarySearchTree.prototype.postOrderTraversal = function () {
+    const result = [];
+    this.postOrder(this.root, result);
+    return result;
 }
