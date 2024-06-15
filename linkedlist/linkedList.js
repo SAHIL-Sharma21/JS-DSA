@@ -14,6 +14,27 @@ class LinkedList {
     constructor() {
         this.head = null; //head null ko point kr rha hai toh empty hai linkedlist
     }
+
+    deleteKey(key) {
+        if (!this.head === null) {
+            console.log("Linked list is empty!")
+            return;
+        }
+
+        if (this.head.data === key) {
+            this.head = this.head.next;
+            return;
+        }
+
+        let current = this.head;
+        while (current !== null && current.next !== null) {
+            if (current.next.data === key) {
+                current.next = current.next.next;
+                return;
+            }
+            current = current.next;
+        }
+    }
 }
 
 //making method to Insert the element in the linkedlist
@@ -161,3 +182,4 @@ LinkedList.prototype.reverse = function () {
     }
     this.head = prev;
 }
+
