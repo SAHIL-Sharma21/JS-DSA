@@ -42,8 +42,6 @@ function minIslandSize(grid) {
         return size;
     }
 
-
-
     //way to go on each row and coloumn
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
@@ -58,11 +56,56 @@ function minIslandSize(grid) {
             }
         }
     }
-
     return samllestSize;
 }
 
 
+//maximum island grid count
 function maxIslandSize(grid) {
     //todo
+    const visited = new Set();
+    let maxSize = 0;
+
+    const rows = grid.length;
+    const cols = grid[0].length;
+
+    //making function for traversing
+    function exploreSize(r, c) {
+        const pos = r + ',' + c;
+
+        if (
+            r < 0 ||
+            r >= rows ||
+            c < 0 ||
+            c >= cols ||
+            grid[r][c] === "W" ||
+            visited.has(pos)
+        ) {
+            return 0
+        }
+
+        let size = 1;
+
+        visited.add(pos);
+
+        size += exploreSize(r + 1, c);
+        size += exploreSize(r - 1, c);
+        size += exploreSize(r, c + 1);
+        size += exploreSize(r, c - 1);
+
+        return size;
+    }
+
+
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+            if (grid[r][c] === "L" && !visited.has(r + ',' + c)) {
+                const maxIslandSize = exploreSize(r, c);
+                if (maxIslandSize > maxSize) {
+                    maxSize = maxIslandSize;
+                }
+            }
+        }
+    }
+    return maxSize;
 }
