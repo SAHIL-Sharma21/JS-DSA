@@ -39,3 +39,11 @@ const newSetv2 = new Set([start]);
 console.log(newSet);//Set(2) { 'a', 'z' }
 console.log(newSetv2);// Set(1) { 'az' }
 console.log(newSet === newSetv2);//false
+
+
+let r = 2
+let c = 3;
+
+const pos = r + ',' + c;
+console.log(pos);//2,3
+console.log(typeof pos);//string
