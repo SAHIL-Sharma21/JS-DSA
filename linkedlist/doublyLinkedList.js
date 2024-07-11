@@ -121,3 +121,43 @@ DoublyLinkedList.prototype.reverse = function () {
         this.head = temp.prev;
     }
 }
+
+//added method change the postionn of next and prev
+//find the key in DLL
+    seacrh(key) {
+        if (!key) {
+            return "Key not provided"
+        }
+
+        if (this.head === null) {
+            return " DLL is empty!"
+        }
+
+        if (this.head.data === key || this.tail.data === key) {
+            return true;
+        }
+
+        let current = this.head;
+        while (current !== null) {
+            if (current.data === key) {
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
+
+    //printing the list
+ print() {
+        if (!this.head) {
+            return "DLL is empty!"
+        }
+
+        let result = [];
+        let current = this.head;
+        while (current !== null) {
+            result.push(current.data);
+            current = current.next;
+        }
+        return result.join(' <=> ');
+    }
