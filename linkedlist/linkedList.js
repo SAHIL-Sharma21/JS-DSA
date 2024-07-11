@@ -35,6 +35,59 @@ class LinkedList {
             current = current.next;
         }
     }
+
+     //mid of the linked list -> using tortise and hare algorithm
+    middle() {
+        if (this.head === null) {
+            return 'Linked list is empty'
+        }
+
+        let slow = this.head;
+        let fast = this.head;
+
+        while (fast !== null && fast.next !== null) {
+            slow = slow.next;
+            fast = fast.next.next
+        }
+        return slow.data;
+    }
+
+    //detech cycle in Linked list using same algo
+    cycle() {
+        if (this.head === null) {
+            return " Linked List is empty"
+        }
+
+        let slow = this.head;
+        let fast = this.head;
+
+        while (fast !== null && fast.next !== null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow === fast) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //remove duplicate from the linked list
+    removeDuplicate() {
+        if (this.head === null) {
+            return "Linked list is empty!"
+        }
+
+        let current = this.head;
+
+        while (current.next !== null && current !== null) {
+            if (current.data === current.next.data) {
+                current.next = current.next.next;
+            } else {
+                current = current.next;
+            }
+        }
+    }
 }
 
 //making method to Insert the element in the linkedlist
@@ -183,3 +236,27 @@ LinkedList.prototype.reverse = function () {
     this.head = prev;
 }
 
+
+
+}
+
+//learning usage below
+const mylinkedList = new LinkedList();
+mylinkedList.addAtFront(5);
+mylinkedList.addAtEnd(6);
+mylinkedList.addAtEnd(7);
+console.log(mylinkedList.print());
+mylinkedList.reverse();
+mylinkedList.addAtEnd(8);
+console.log(mylinkedList.print());
+console.log(mylinkedList.search(8));
+console.log(mylinkedList.search(9));
+
+const headNode = mylinkedList.head;
+console.log(mylinkedList.insertAtGivenNode(7, headNode));
+console.log(mylinkedList.print());
+
+console.log(mylinkedList.deleteByKey(7));
+console.log(mylinkedList.print());
+mylinkedList.addAtEnd(9);
+console.log(mylinkedList.middle());
